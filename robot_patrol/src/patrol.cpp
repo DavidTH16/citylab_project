@@ -21,7 +21,7 @@
 #include <tf2/LinearMath/Quaternion.h>
 #include <utility>
 
-using namespace std::chrono_literals;   // to recognize literals in the timers.
+using namespace std::chrono_literals; // to recognize literals in the timers.
 
 class Patrol : public rclcpp::Node {
 
@@ -49,7 +49,7 @@ public:
 
     // subs and pubsh set up
     subscription_laser = this->create_subscription<sensor_msgs::msg::LaserScan>(
-        "/fastbot_1/scan", 10,
+        "/fastbot_12/scan", 10,
         std::bind(&Patrol::laser_callback, this, std::placeholders::_1));
 
     publisher_cmd = this->create_publisher<geometry_msgs::msg::Twist>(
