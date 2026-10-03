@@ -26,7 +26,6 @@ private:
   rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr
       subscription_laser;
 
-  rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr subscription_odom;
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_cmd;
 
   // minimum distance allowed
@@ -39,10 +38,6 @@ public:
     subscription_laser = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "/fastbot_1/scan", 10,
         std::bind(&Patrol::laser_callback, this, std::placeholders::_1));
-
-    subscription_odom = this->create_subscription<nav_msgs::msg::Odometry>(
-        "/fastbot_1/odom", 10,
-        std::bind(&Patrol::odom_callback, this, std::placeholders::_1));
 
     publisher_cmd = this->create_publisher<geometry_msgs::msg::Twist>(
         "/fastbot_1/cmd_vel", 10);
@@ -61,9 +56,9 @@ private: // define callbacks for each subs, publs.
     int front_right_end = 199;
 
     // covering sides of the robot
-    int right_start = 140;
-    int right_end = 169;
-    int left_start = 20;
+    int right_start = 149;
+    int right_end = 169; // 169  // fail 188
+    int left_start = 20; // 20 ->init //fail 12
     int left_end = 49;
 
     // map to define right and left zone using index
@@ -120,6 +115,7 @@ private: // define callbacks for each subs, publs.
       cmd.angular.z = 0.0;
     } else {
       cmd.linear.x = 0.05;
+      RCLCPP_WARN(this->get_logger(), "Obstacle detect...");
       // check which side is optimum
       if (min_distance["left"] > min_distance["right"]) {
         cmd.angular.z = 0.5;
@@ -130,8 +126,6 @@ private: // define callbacks for each subs, publs.
 
     publisher_cmd->publish(cmd);
   }
-
-  // void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg) {}
 };
 
 int main(int argc, char **argv) {

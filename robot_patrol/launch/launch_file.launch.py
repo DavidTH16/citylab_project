@@ -7,7 +7,8 @@ def generate_launch_description():
         Node(
             package = "robot_patrol",
             executable = "patrol_executable",
-            output = "screen" 
+            output = "screen",
+            emulate_tty=True
         )
     
     ])
