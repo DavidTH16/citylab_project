@@ -1,0 +1,143 @@
+#include "geometry_msgs/msg/detail/twist__struct.hpp"
+#include "geometry_msgs/msg/twist.hpp"
+#include "nav_msgs/msg/detail/odometry__struct.hpp"
+#include "nav_msgs/msg/odometry.hpp"
+#include "rclcpp/logging.hpp"
+#include "rclcpp/node.hpp"
+#include "rclcpp/subscription.hpp"
+#include "sensor_msgs/msg/detail/laser_scan__struct.hpp"
+#include "sensor_msgs/msg/laser_scan.hpp"
+#include "std_msgs/msg/string.hpp"
+#include <algorithm>
+#include <cmath>
+#include <functional>
+#include <limits>
+#include <map>
+#include <memory>
+#include <rclcpp/rclcpp.hpp>
+#include <tf2/LinearMath/Matrix3x3.h>
+#include <tf2/LinearMath/Quaternion.h>
+#include <utility>
+
+class Patrol : public rclcpp::Node {
+
+private:
+  // subscriptors and publisher required
+  rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr
+      subscription_laser;
+
+  rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr subscription_odom;
+  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_cmd;
+
+  // minimum distance allowed
+  const double safety_distance = 0.35;
+
+public:
+  Patrol() : Node("patrol_node") {
+
+    // subs and pubsh set up
+    subscription_laser = this->create_subscription<sensor_msgs::msg::LaserScan>(
+        "/fastbot_1/scan", 10,
+        std::bind(&Patrol::laser_callback, this, std::placeholders::_1));
+
+    subscription_odom = this->create_subscription<nav_msgs::msg::Odometry>(
+        "/fastbot_1/odom", 10,
+        std::bind(&Patrol::odom_callback, this, std::placeholders::_1));
+
+    publisher_cmd = this->create_publisher<geometry_msgs::msg::Twist>(
+        "/fastbot_1/cmd_vel", 10);
+
+    RCLCPP_INFO(this->get_logger(), "Patrol node active!...");
+  }
+
+private: // define callbacks for each subs, publs.
+  void laser_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {
+
+    // zones to cover frontal 180 of the robot
+    // covering front of robot
+    int front_left_start = 0;
+    int front_left_end = 11;
+    int front_right_start = 189;
+    int front_right_end = 199;
+
+    // covering sides of the robot
+    int right_start = 140;
+    int right_end = 169;
+    int left_start = 20;
+    int left_end = 49;
+
+    // map to define right and left zone using index
+    std::map<std::string, std::pair<int, int>> zones = {
+        {"front right", {front_right_start, front_right_end}},
+        {"front left", {front_left_start, front_left_end}},
+        {"right", {right_start, right_end}},
+        {"left", {left_start, left_end}}};
+
+    // map to save final value by zone
+    std::map<std::string, float> min_distance;
+
+    // access values from laser and store them by index
+    for (const auto &[zone_name, idx_range] : zones) {
+      int start_idx = idx_range.first;
+      int end_idx = idx_range.second;
+
+      // init the min value as positive infinite
+      float min_value = std::numeric_limits<float>::infinity();
+
+      if (start_idx < static_cast<int>(msg->ranges.size()) &&
+          end_idx < static_cast<int>(msg->ranges.size())) {
+        for (int i = start_idx; i <= end_idx; ++i) {
+          float ray = msg->ranges[i];
+          if (std::isfinite(ray) && ray >= msg->range_min &&
+              ray <= msg->range_max) {
+            if (ray < min_value) {
+              min_value = ray;
+            }
+          }
+        }
+      }
+      min_distance[zone_name] = min_value;
+    }
+
+    // display laser info for debugging purpose
+    for (const auto &[zone_value, dist] : min_distance) {
+      RCLCPP_INFO(this->get_logger(), "sensor laser zone: %s, dist: %.2fm",
+                  zone_value.c_str(), dist);
+    }
+
+    // create cmd object to publish the velocity
+    auto cmd = geometry_msgs::msg::Twist();
+
+    // map to check safety zone
+    std::map<std::string, bool> check_zone;
+    for (const auto &zone : min_distance) {
+      check_zone[zone.first] = zone.second < safety_distance;
+    }
+
+    // check if obstacle ahead, and decide to what side turns
+    if (!check_zone["front right"] && !check_zone["front left"]) {
+      cmd.linear.x = 0.1;
+      cmd.angular.z = 0.0;
+    } else {
+      cmd.linear.x = 0.05;
+      // check which side is optimum
+      if (min_distance["left"] > min_distance["right"]) {
+        cmd.angular.z = 0.5;
+      } else {
+        cmd.angular.z = -0.5;
+      }
+    }
+
+    publisher_cmd->publish(cmd);
+  }
+
+  // void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg) {}
+};
+
+int main(int argc, char **argv) {
+  rclcpp::init(argc, argv);
+  auto patrol_node = std::make_shared<Patrol>();
+  rclcpp::spin(patrol_node);
+  rclcpp::shutdown();
+  return 0;
+}
