@@ -5,10 +5,12 @@
 #include "rclcpp/logging.hpp"
 #include "rclcpp/node.hpp"
 #include "rclcpp/subscription.hpp"
+#include "rclcpp/timer.hpp"
 #include "sensor_msgs/msg/detail/laser_scan__struct.hpp"
 #include "sensor_msgs/msg/laser_scan.hpp"
 #include "std_msgs/msg/string.hpp"
 #include <algorithm>
+#include <chrono>
 #include <cmath>
 #include <functional>
 #include <limits>
@@ -19,17 +21,28 @@
 #include <tf2/LinearMath/Quaternion.h>
 #include <utility>
 
+using namespace std::chrono_literals;   // to recognize literals in the timers.
+
 class Patrol : public rclcpp::Node {
 
 private:
-  // subscriptors and publisher required
+  // subscriptors, publisher and timer required
   rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr
       subscription_laser;
 
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_cmd;
+  rclcpp::TimerBase::SharedPtr timer_;
 
   // minimum distance allowed
   const double safety_distance = 0.35;
+
+  // object to save velocity
+  struct VelocityPatrol {
+    double linear_x;
+    double angular_z;
+  };
+
+  VelocityPatrol robot_velocity;
 
 public:
   Patrol() : Node("patrol_node") {
@@ -41,6 +54,9 @@ public:
 
     publisher_cmd = this->create_publisher<geometry_msgs::msg::Twist>(
         "/fastbot_1/cmd_vel", 10);
+
+    timer_ = this->create_wall_timer(100ms, // 10Hz
+                                     std::bind(&Patrol::timer_callback, this));
 
     RCLCPP_INFO(this->get_logger(), "Patrol node active!...");
   }
@@ -100,9 +116,6 @@ private: // define callbacks for each subs, publs.
                   zone_value.c_str(), dist);
     }
 
-    // create cmd object to publish the velocity
-    auto cmd = geometry_msgs::msg::Twist();
-
     // map to check safety zone
     std::map<std::string, bool> check_zone;
     for (const auto &zone : min_distance) {
@@ -111,19 +124,26 @@ private: // define callbacks for each subs, publs.
 
     // check if obstacle ahead, and decide to what side turns
     if (!check_zone["front right"] && !check_zone["front left"]) {
-      cmd.linear.x = 0.1;
-      cmd.angular.z = 0.0;
+      robot_velocity.linear_x = 0.1;
+      robot_velocity.angular_z = 0.0;
     } else {
-      cmd.linear.x = 0.05;
+      robot_velocity.linear_x = 0.05;
       RCLCPP_WARN(this->get_logger(), "Obstacle detect...");
       // check which side is optimum
       if (min_distance["left"] > min_distance["right"]) {
-        cmd.angular.z = 0.5;
+        robot_velocity.angular_z = 0.5;
       } else {
-        cmd.angular.z = -0.5;
+        robot_velocity.angular_z = -0.5;
       }
     }
+  }
 
+  // timer implementation
+  void timer_callback() {
+    // create cmd object to publish the velocity
+    auto cmd = geometry_msgs::msg::Twist();
+    cmd.linear.x = robot_velocity.linear_x;
+    cmd.angular.z = robot_velocity.angular_z;
     publisher_cmd->publish(cmd);
   }
 };
