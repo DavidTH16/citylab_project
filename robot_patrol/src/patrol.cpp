@@ -49,7 +49,7 @@ public:
 
     // subs and pubsh set up
     subscription_laser = this->create_subscription<sensor_msgs::msg::LaserScan>(
-        "/fastbot_12/scan", 10,
+        "/fastbot_1/scan", 10,
         std::bind(&Patrol::laser_callback, this, std::placeholders::_1));
 
     publisher_cmd = this->create_publisher<geometry_msgs::msg::Twist>(
