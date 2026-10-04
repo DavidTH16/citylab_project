@@ -1,0 +1,89 @@
+[0.013s] Invoking command in '/home/user/ros2_ws/src/citylab_project/build/robot_patrol': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake /home/user/ros2_ws/src/citylab_project/robot_patrol -DCMAKE_INSTALL_PREFIX=/home/user/ros2_ws/src/citylab_project/install/robot_patrol
+[1.620s] -- The C compiler identification is GNU 11.4.0
+[1.724s] -- The CXX compiler identification is GNU 11.4.0
+[1.738s] -- Detecting C compiler ABI info
+[1.810s] -- Detecting C compiler ABI info - done
+[1.819s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.820s] -- Detecting C compile features
+[1.872s] -- Detecting C compile features - done
+[1.878s] -- Detecting CXX compiler ABI info
+[1.957s] -- Detecting CXX compiler ABI info - done
+[1.966s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.966s] -- Detecting CXX compile features
+[1.966s] -- Detecting CXX compile features - done
+[1.974s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[2.613s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[2.781s] -- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+[2.938s] -- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[2.952s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[3.075s] -- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[3.108s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[3.150s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[3.372s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[3.418s] -- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[3.956s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[3.999s] -- Found FastRTPS: /opt/ros/humble/include  
+[4.058s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[4.082s] -- Looking for pthread.h
+[4.153s] -- Looking for pthread.h - found
+[4.154s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[4.225s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[4.226s] -- Found Threads: TRUE  
+[4.333s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[4.395s] -- Found nav_msgs: 4.9.0 (/opt/ros/humble/share/nav_msgs/cmake)
+[4.540s] -- Found tf2: 0.25.17 (/opt/ros/humble/share/tf2/cmake)
+[4.564s] -- Found tf2_geometry_msgs: 0.25.17 (/opt/ros/humble/share/tf2_geometry_msgs/cmake)
+[4.690s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[4.693s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[4.693s] -- Ensuring Eigen3 include directory is part of orocos-kdl CMake target
+[4.994s] -- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[5.112s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[5.112s] -- Configured cppcheck include dirs: 
+[5.112s] -- Configured cppcheck exclude dirs and/or files: 
+[5.113s] -- Added test 'flake8' to check Python code syntax and style conventions
+[5.114s] -- Added test 'lint_cmake' to check CMake code style
+[5.115s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[5.116s] -- Added test 'uncrustify' to check C / C++ code style
+[5.116s] -- Configured uncrustify additional arguments: 
+[5.117s] -- Added test 'xmllint' to check XML markup files
+[5.120s] -- Configuring done
+[5.124s] [33mCMake Warning (dev) at CMakeLists.txt:19 (add_executable):
+[5.125s]   Policy CMP0115 is not set: Source file extensions must be explicit.  Run
+[5.125s]   "cmake --help-policy CMP0115" for policy details.  Use the cmake_policy
+[5.125s]   command to set the policy and suppress this warning.
+[5.125s] 
+[5.125s]   File:
+[5.125s] 
+[5.125s]     /home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp
+[5.125s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[5.125s] [0m
+[5.135s] -- Generating done
+[5.139s] -- Build files have been written to: /home/user/ros2_ws/src/citylab_project/build/robot_patrol
+[5.150s] Invoked command in '/home/user/ros2_ws/src/citylab_project/build/robot_patrol' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake /home/user/ros2_ws/src/citylab_project/robot_patrol -DCMAKE_INSTALL_PREFIX=/home/user/ros2_ws/src/citylab_project/install/robot_patrol
+[5.152s] Invoking command in '/home/user/ros2_ws/src/citylab_project/build/robot_patrol': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake --build /home/user/ros2_ws/src/citylab_project/build/robot_patrol -- -j8 -l8
+[5.201s] [ 50%] [32mBuilding CXX object CMakeFiles/patrol_executable.dir/src/patrol.cpp.o[0m
+[14.434s] [100%] [32m[1mLinking CXX executable patrol_executable[0m
+[14.784s] [100%] Built target patrol_executable
+[14.794s] Invoked command in '/home/user/ros2_ws/src/citylab_project/build/robot_patrol' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake --build /home/user/ros2_ws/src/citylab_project/build/robot_patrol -- -j8 -l8
+[14.804s] Invoking command in '/home/user/ros2_ws/src/citylab_project/build/robot_patrol': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake --install /home/user/ros2_ws/src/citylab_project/build/robot_patrol
+[14.811s] -- Install configuration: ""
+[14.811s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/lib/robot_patrol/patrol_executable
+[14.816s] -- Set runtime path of "/home/user/ros2_ws/src/citylab_project/install/robot_patrol/lib/robot_patrol/patrol_executable" to ""
+[14.816s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol//launch
+[14.816s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol//launch/start_patrolling.launch.py
+[14.816s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/ament_index/resource_index/package_run_dependencies/robot_patrol
+[14.817s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/ament_index/resource_index/parent_prefix_path/robot_patrol
+[14.817s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/environment/ament_prefix_path.sh
+[14.817s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/environment/ament_prefix_path.dsv
+[14.818s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/environment/path.sh
+[14.818s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/environment/path.dsv
+[14.818s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/local_setup.bash
+[14.818s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/local_setup.sh
+[14.818s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/local_setup.zsh
+[14.818s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/local_setup.dsv
+[14.819s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/package.dsv
+[14.819s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/ament_index/resource_index/packages/robot_patrol
+[14.819s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/cmake/robot_patrolConfig.cmake
+[14.819s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/cmake/robot_patrolConfig-version.cmake
+[14.819s] -- Installing: /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol/package.xml
+[14.821s] Invoked command in '/home/user/ros2_ws/src/citylab_project/build/robot_patrol' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble:/home/simulations/ros2_sims_ws/install/robot_description _=/usr/bin/env /usr/bin/cmake --install /home/user/ros2_ws/src/citylab_project/build/robot_patrol

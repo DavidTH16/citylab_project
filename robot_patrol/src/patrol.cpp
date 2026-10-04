@@ -54,16 +54,6 @@ public:
     // adding standard sensor QoS
     auto qos = rclcpp::SensorDataQoS();
 
-    rclcpp::SubscriptionOptions options;
-
-    options.event_callbacks.deadline_callback =
-        [this](rclcpp::QOSDeadlineRequestedInfo &info) {
-          RCLCPP_ERROR(this->get_logger(),
-                       "CRITICAL: Laser Sensor Deadline Missed! No data "
-                       "received within 500ms. Total misses: %d",
-                       info.total_count);
-        };
-
     // subs and pubsh set up
     subscription_laser = this->create_subscription<sensor_msgs::msg::LaserScan>(
         "/fastbot_1/scan", qos,
