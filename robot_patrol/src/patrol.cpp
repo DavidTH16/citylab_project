@@ -33,7 +33,7 @@ private:
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_cmd;
   rclcpp::TimerBase::SharedPtr timer_;
   rclcpp::TimerBase::SharedPtr watchdog_timer_;
-  rclcpp::Time laser_scan_time_;
+  // rclcpp::Time laser_scan_time_;
 
   // minimum distance allowed
   const double safety_distance = 0.35;
@@ -49,23 +49,18 @@ private:
 public:
   Patrol() : Node("patrol_node") {
 
-    // adding standard sensor QoS
-    auto qos = rclcpp::SensorDataQoS();
+    // to test use /fastbot_1/rest_topic
 
     // subs and pubsh set up
     subscription_laser = this->create_subscription<sensor_msgs::msg::LaserScan>(
-        "/fastbot_1/scan", qos,
+        "/scan", 10,
         std::bind(&Patrol::laser_callback, this, std::placeholders::_1));
 
-    publisher_cmd = this->create_publisher<geometry_msgs::msg::Twist>(
-        "/fastbot_1/cmd_vel", 10);
+    publisher_cmd =
+        this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
 
     timer_ = this->create_wall_timer(100ms, // 10Hz
                                      std::bind(&Patrol::timer_callback, this));
-
-    // timer to chech if laser data comes every 200ms
-    watchdog_timer_ = this->create_wall_timer(
-        200ms, std::bind(&Patrol::watchdog_callback, this));
 
     RCLCPP_INFO(this->get_logger(), "Patrol node active!...");
   }
@@ -73,14 +68,11 @@ public:
 private: // define callbacks for each subs, publs.
   void laser_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {
 
-    // trigger timer to track if callback is receiving data
-    laser_scan_time_ = this->now();
-
     // zones to cover frontal 180 of the robot
     // covering front of robot
     int front_left_start = 0;
-    int front_left_end = 11;
-    int front_right_start = 189;
+    int front_left_end = 15;     // 11
+    int front_right_start = 178; // 189
     int front_right_end = 199;
 
     // covering sides of the robot
@@ -136,10 +128,10 @@ private: // define callbacks for each subs, publs.
 
     // check if obstacle ahead, and decide to what side turns
     if (!check_zone["front right"] && !check_zone["front left"]) {
-      robot_velocity.linear_x = 0.1;
+      robot_velocity.linear_x = 0.05;
       robot_velocity.angular_z = 0.0;
     } else {
-      robot_velocity.linear_x = 0.05;
+      robot_velocity.linear_x = 0.0125;
       RCLCPP_WARN(this->get_logger(), "Obstacle detect...");
       // check which side is optimum
       if (min_distance["left"] > min_distance["right"]) {
@@ -157,14 +149,6 @@ private: // define callbacks for each subs, publs.
     cmd.linear.x = robot_velocity.linear_x;
     cmd.angular.z = robot_velocity.angular_z;
     publisher_cmd->publish(cmd);
-  }
-
-  void watchdog_callback() { // if not data in 3s, then show error.
-    auto elapsed = (this->now() - laser_scan_time_).seconds();
-    if (elapsed > 3.0) {
-      RCLCPP_ERROR(this->get_logger(),
-                   "Laser data stalled, No data received... %.2f", elapsed);
-    }
   }
 };
 
