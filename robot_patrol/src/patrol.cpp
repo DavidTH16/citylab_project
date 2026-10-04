@@ -32,6 +32,8 @@ private:
 
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_cmd;
   rclcpp::TimerBase::SharedPtr timer_;
+  rclcpp::TimerBase::SharedPtr watchdog_timer_;
+  rclcpp::Time laser_scan_time_;
 
   // minimum distance allowed
   const double safety_distance = 0.35;
@@ -47,9 +49,12 @@ private:
 public:
   Patrol() : Node("patrol_node") {
 
+    // adding standard sensor QoS
+    auto qos = rclcpp::SensorDataQoS();
+
     // subs and pubsh set up
     subscription_laser = this->create_subscription<sensor_msgs::msg::LaserScan>(
-        "/fastbot_1/scan", 10,
+        "/fastbot_1/scan", qos,
         std::bind(&Patrol::laser_callback, this, std::placeholders::_1));
 
     publisher_cmd = this->create_publisher<geometry_msgs::msg::Twist>(
@@ -58,11 +63,18 @@ public:
     timer_ = this->create_wall_timer(100ms, // 10Hz
                                      std::bind(&Patrol::timer_callback, this));
 
+    // timer to chech if laser data comes every 200ms
+    watchdog_timer_ = this->create_wall_timer(
+        200ms, std::bind(&Patrol::watchdog_callback, this));
+
     RCLCPP_INFO(this->get_logger(), "Patrol node active!...");
   }
 
 private: // define callbacks for each subs, publs.
   void laser_callback(const sensor_msgs::msg::LaserScan::SharedPtr msg) {
+
+    // trigger timer to track if callback is receiving data
+    laser_scan_time_ = this->now();
 
     // zones to cover frontal 180 of the robot
     // covering front of robot
@@ -138,13 +150,21 @@ private: // define callbacks for each subs, publs.
     }
   }
 
-  // timer implementation
+  // timers implementation
   void timer_callback() {
     // create cmd object to publish the velocity
     auto cmd = geometry_msgs::msg::Twist();
     cmd.linear.x = robot_velocity.linear_x;
     cmd.angular.z = robot_velocity.angular_z;
     publisher_cmd->publish(cmd);
+  }
+
+  void watchdog_callback() { // if not data in 3s, then show error.
+    auto elapsed = (this->now() - laser_scan_time_).seconds();
+    if (elapsed > 3.0) {
+      RCLCPP_ERROR(this->get_logger(),
+                   "Laser data stalled, No data received... %.2f", elapsed);
+    }
   }
 };
 
