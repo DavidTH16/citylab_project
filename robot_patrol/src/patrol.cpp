@@ -32,8 +32,6 @@ private:
 
   rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr publisher_cmd;
   rclcpp::TimerBase::SharedPtr timer_;
-  rclcpp::TimerBase::SharedPtr watchdog_timer_;
-  // rclcpp::Time laser_scan_time_;
 
   // minimum distance allowed
   const double safety_distance = 0.35;
@@ -71,15 +69,16 @@ private: // define callbacks for each subs, publs.
     // zones to cover frontal 180 of the robot
     // covering front of robot
     int front_left_start = 0;
-    int front_left_end = 15;     // 11
-    int front_right_start = 178; // 189
-    int front_right_end = 199;
+    int front_left_end = 30;     // 25
+    int front_right_start = 418; // 423
+    int front_right_end = 448;
 
-    // covering sides of the robot
-    int right_start = 149;
-    int right_end = 169; // 169  // fail 188
-    int left_start = 20; // 20 ->init //fail 12
-    int left_end = 49;
+    // covering sides of the robot, new indexes to cover the flanks
+    // left from 82 to 90, right from 270 to 278
+    int right_start = 337;
+    int right_end = 347;
+    int left_start = 102;
+    int left_end = 112;
 
     // map to define right and left zone using index
     std::map<std::string, std::pair<int, int>> zones = {
@@ -128,10 +127,10 @@ private: // define callbacks for each subs, publs.
 
     // check if obstacle ahead, and decide to what side turns
     if (!check_zone["front right"] && !check_zone["front left"]) {
-      robot_velocity.linear_x = 0.05;
+      robot_velocity.linear_x = 0.0025; // 0.0025  //original 0.1
       robot_velocity.angular_z = 0.0;
     } else {
-      robot_velocity.linear_x = 0.0125;
+      robot_velocity.linear_x = 0.00125; // 0.005  // original 0.05
       RCLCPP_WARN(this->get_logger(), "Obstacle detect...");
       // check which side is optimum
       if (min_distance["left"] > min_distance["right"]) {
