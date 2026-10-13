@@ -1,0 +1,96 @@
+[33mCMake Warning (dev) at CMakeLists.txt:20 (add_executable):
+  Policy CMP0115 is not set: Source file extensions must be explicit.  Run
+  "cmake --help-policy CMP0115" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  File:
+
+    /home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[33mCMake Warning (dev) at CMakeLists.txt:31 (add_executable):
+  Policy CMP0115 is not set: Source file extensions must be explicit.  Run
+  "cmake --help-policy CMP0115" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  File:
+
+    /home/user/ros2_ws/src/citylab_project/robot_patrol/src/direction_service.cpp
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[33mCMake Warning (dev) at CMakeLists.txt:40 (add_executable):
+  Policy CMP0115 is not set: Source file extensions must be explicit.  Run
+  "cmake --help-policy CMP0115" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  File:
+
+    /home/user/ros2_ws/src/citylab_project/robot_patrol/src/test_service.cpp
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[33mCMake Warning (dev) at CMakeLists.txt:48 (add_executable):
+  Policy CMP0115 is not set: Source file extensions must be explicit.  Run
+  "cmake --help-policy CMP0115" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  File:
+
+    /home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol_with_service.cpp
+This warning is for project developers.  Use -Wno-dev to suppress it.
+[0m
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:[m[K In member function '[01m[Kvoid Patrol::laser_callback(sensor_msgs::msg::LaserScan_<std::allocator<void> >::SharedPtr)[m[K':
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:79:1:[m[K [01;31m[Kerror: [m[Kversion control conflict marker in file
+   79 | [01;31m[K<<<<<<<[m[K HEAD
+      | [01;31m[K^~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:86:1:[m[K [01;31m[Kerror: [m[Kversion control conflict marker in file
+   86 | [01;31m[K=======[m[K
+      | [01;31m[K^~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:89:9:[m[K [01;31m[Kerror: [m[Kredeclaration of '[01m[Kint right_end[m[K'
+   89 |     int [01;31m[Kright_end[m[K = 169; //
+      |         [01;31m[K^~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:83:9:[m[K [01;36m[Knote: [m[K'[01m[Kint right_end[m[K' previously declared here
+   83 |     int [01;36m[Kright_end[m[K = 347;
+      |         [01;36m[K^~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:90:9:[m[K [01;31m[Kerror: [m[Kredeclaration of '[01m[Kint left_start[m[K'
+   90 |     int [01;31m[Kleft_start[m[K = 20; //
+      |         [01;31m[K^~~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:84:9:[m[K [01;36m[Knote: [m[K'[01m[Kint left_start[m[K' previously declared here
+   84 |     int [01;36m[Kleft_start[m[K = 102;
+      |         [01;36m[K^~~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:91:9:[m[K [01;31m[Kerror: [m[Kredeclaration of '[01m[Kint left_end[m[K'
+   91 |     int [01;31m[Kleft_end[m[K = 49;
+      |         [01;31m[K^~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:85:9:[m[K [01;36m[Knote: [m[K'[01m[Kint left_end[m[K' previously declared here
+   85 |     int [01;36m[Kleft_end[m[K = 112;
+      |         [01;36m[K^~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:92:1:[m[K [01;31m[Kerror: [m[Kversion control conflict marker in file
+   92 | [01;31m[K>>>>>>>[m[K main
+      | [01;31m[K^~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:105:47:[m[K [01;31m[Kerror: [m[K'[01m[Kzones[m[K' was not declared in this scope
+  105 |     for (const auto &[zone_name, idx_range] : [01;31m[Kzones[m[K) {
+      |                                               [01;31m[K^~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:74:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kfront_left_start[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   74 |     int [01;35m[Kfront_left_start[m[K = 0;
+      |         [01;35m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:75:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kfront_left_end[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   75 |     int [01;35m[Kfront_left_end[m[K = 30;     // 25
+      |         [01;35m[K^~~~~~~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:76:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kfront_right_start[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   76 |     int [01;35m[Kfront_right_start[m[K = 418; // 423
+      |         [01;35m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:77:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kfront_right_end[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   77 |     int [01;35m[Kfront_right_end[m[K = 448;
+      |         [01;35m[K^~~~~~~~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:83:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kright_end[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   83 |     int [01;35m[Kright_end[m[K = 347;
+      |         [01;35m[K^~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:84:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kleft_start[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   84 |     int [01;35m[Kleft_start[m[K = 102;
+      |         [01;35m[K^~~~~~~~~~[m[K
+[01m[K/home/user/ros2_ws/src/citylab_project/robot_patrol/src/patrol.cpp:85:9:[m[K [01;35m[Kwarning: [m[Kunused variable '[01m[Kleft_end[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   85 |     int [01;35m[Kleft_end[m[K = 112;
+      |         [01;35m[K^~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/patrol_executable.dir/build.make:76: CMakeFiles/patrol_executable.dir/src/patrol.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:143: CMakeFiles/patrol_executable.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+gmake: *** [Makefile:146: all] Error 2

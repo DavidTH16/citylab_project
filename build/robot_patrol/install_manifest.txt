@@ -1,4 +1,10 @@
 /home/user/ros2_ws/src/citylab_project/install/robot_patrol/lib/robot_patrol/patrol_executable
+/home/user/ros2_ws/src/citylab_project/install/robot_patrol/lib/robot_patrol/patrol_with_service_node
+/home/user/ros2_ws/src/citylab_project/install/robot_patrol/lib/robot_patrol/direction_service_node
+/home/user/ros2_ws/src/citylab_project/install/robot_patrol/lib/robot_patrol/test_client_node
+/home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol//launch/main.launch.py
+/home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol//launch/start_direction_service.launch.py
+/home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol//launch/start_test_service.launch.py
 /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/robot_patrol//launch/start_patrolling.launch.py
 /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/ament_index/resource_index/package_run_dependencies/robot_patrol
 /home/user/ros2_ws/src/citylab_project/install/robot_patrol/share/ament_index/resource_index/parent_prefix_path/robot_patrol

@@ -1,0 +1,20 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from custom_interface/srv/GetDirection.srv
+// generated code does not contain a copyright notice
+
+#include "sensor_msgs/msg/LaserScan.idl"
+
+module custom_interface {
+  module srv {
+    @verbatim (language="comment", text=
+      "Request")
+    struct GetDirection_Request {
+      sensor_msgs::msg::LaserScan laser_data;
+    };
+    struct GetDirection_Response {
+      @verbatim (language="comment", text=
+        "Response")
+      string direction;
+    };
+  };
+};

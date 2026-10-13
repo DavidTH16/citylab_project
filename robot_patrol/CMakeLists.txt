@@ -14,6 +14,7 @@ find_package(nav_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(custom_interface REQUIRED)
 
 #add executable 
 add_executable(patrol_executable src/patrol)
@@ -27,9 +28,37 @@ ament_target_dependencies(patrol_executable
 	tf2_geometry_msgs
 )
 
+add_executable(direction_service_node src/direction_service)
+ament_target_dependencies(direction_service_node
+	rclcpp
+	geometry_msgs
+	std_msgs
+	sensor_msgs
+	custom_interface
+)
+
+add_executable(test_client_node src/test_service)
+ament_target_dependencies(test_client_node
+	rclcpp
+	std_msgs
+	sensor_msgs
+	custom_interface
+)
+
+add_executable(patrol_with_service_node src/patrol_with_service)
+ament_target_dependencies(patrol_with_service_node
+	rclcpp
+	geometry_msgs
+	std_msgs
+	custom_interface
+)
+
 #install executable
 install(TARGETS
 	patrol_executable
+	patrol_with_service_node
+	direction_service_node
+	test_client_node
 DESTINATION lib/${PROJECT_NAME})
 
 #install launch file
