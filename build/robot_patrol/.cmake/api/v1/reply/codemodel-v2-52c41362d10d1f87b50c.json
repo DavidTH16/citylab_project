@@ -1,0 +1,106 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-089204d63ed73a5a1e52.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "robot_patrol",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "direction_service_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-direction_service_node-105304a31151b7ccf693.json",
+					"name" : "direction_service_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "patrol_executable::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-patrol_executable-6726ef70db88fb8ca631.json",
+					"name" : "patrol_executable",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "patrol_with_service_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-patrol_with_service_node-dce6ac64c8d29300c18f.json",
+					"name" : "patrol_with_service_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "robot_patrol_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-robot_patrol_uninstall-4bd2f9167fc4d2393533.json",
+					"name" : "robot_patrol_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_client_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_client_node-9652cd1ee7cc338cdcca.json",
+					"name" : "test_client_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-cc993b98e928775ea1c3.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/user/ros2_ws/src/citylab_project/build/robot_patrol",
+		"source" : "/home/user/ros2_ws/src/citylab_project/robot_patrol"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

@@ -1,6 +1,9 @@
 /home/user/ros2_ws/src/citylab_project/build/robot_patrol/CMakeFiles/uninstall.dir
 /home/user/ros2_ws/src/citylab_project/build/robot_patrol/CMakeFiles/robot_patrol_uninstall.dir
 /home/user/ros2_ws/src/citylab_project/build/robot_patrol/CMakeFiles/patrol_executable.dir
+/home/user/ros2_ws/src/citylab_project/build/robot_patrol/CMakeFiles/direction_service_node.dir
+/home/user/ros2_ws/src/citylab_project/build/robot_patrol/CMakeFiles/test_client_node.dir
+/home/user/ros2_ws/src/citylab_project/build/robot_patrol/CMakeFiles/patrol_with_service_node.dir
 /home/user/ros2_ws/src/citylab_project/build/robot_patrol/CMakeFiles/test.dir
 /home/user/ros2_ws/src/citylab_project/build/robot_patrol/CMakeFiles/edit_cache.dir
 /home/user/ros2_ws/src/citylab_project/build/robot_patrol/CMakeFiles/rebuild_cache.dir
