@@ -136,12 +136,13 @@ private:
 
     // to guarantee the correct communication ensure we have data before calling
     // the service
-    if(msg_laser->laser_data.ranges.empty()){
-    RCLCPP_WARN(this->get_logger(), "Waiting for laser scan data");
-    return;
+    if (msg_laser->laser_data.ranges.empty()) {
+      RCLCPP_WARN(this->get_logger(), "Waiting for laser_scan data ...");
+      return;
     }
     // send the request in asynchronous mode
     auto result_future = client_service->async_send_request(msg_laser);
+    RCLCPP_INFO(this->get_logger(), "Reques Sent");
 
     // wait for the response
     std::future_status status = result_future.wait_for(2s);
@@ -152,8 +153,7 @@ private:
       }
 
       direction_string = response->direction;
-      RCLCPP_INFO(this->get_logger(),
-                  "process has finished cleanly, direction: %s",
+      RCLCPP_INFO(this->get_logger(), "Response received: %s",
                   response->direction.c_str());
 
     } else {

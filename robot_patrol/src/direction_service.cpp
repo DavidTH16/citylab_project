@@ -116,11 +116,6 @@ private:
       total_distance_by_zone[zone_name] = total_ray_zone;
     }
 
-    // display laser info for debugging purpose-------->
-    // for (const auto &[zone_value, dist] : total_distance_by_zone) {
-    //  RCLCPP_INFO(this->get_logger(), "sensor laser zone: %s, dist: %.2fm",
-    //              zone_value.c_str(), dist);
-    //}
 
     // check if obstacle ahead, and decide to what side turns
     if (min_distance["front"] > safety_distance) {
