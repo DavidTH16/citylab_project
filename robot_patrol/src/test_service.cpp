@@ -63,6 +63,8 @@ public:
       RCLCPP_INFO(this->get_logger(),
                   "Service not available, waiting again...");
     }
+
+    RCLCPP_INFO(this->get_logger(), "Client Ready ...");
   }
 
 private:
@@ -73,6 +75,7 @@ private:
 
   void timer_callback() {
     // send the request in asynchronous mode
+    RCLCPP_INFO(this->get_logger(), "Reques Sent");
     auto result_future = client_service->async_send_request(msg_laser);
 
     // wait for the response
@@ -83,8 +86,7 @@ private:
         RCLCPP_WARN(this->get_logger(), "Something when wrong");
       }
 
-      RCLCPP_INFO(this->get_logger(),
-                  "process has finished cleanly, direction: %s",
+      RCLCPP_INFO(this->get_logger(), "Response Received: %s",
                   response->direction.c_str());
 
     } else {

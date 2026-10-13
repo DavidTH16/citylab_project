@@ -30,7 +30,7 @@ public:
         name_server, std::bind(&DirectionService::server_callback, this,
                                std::placeholders::_1, std::placeholders::_2));
 
-    RCLCPP_INFO(this->get_logger(), "Server initialized ...");
+    RCLCPP_INFO(this->get_logger(), "Service Ready ...");
   }
 
 private:
@@ -48,6 +48,8 @@ private:
       RCLCPP_WARN(this->get_logger(), "Empty laser data received..");
       return;
     }
+
+    RCLCPP_INFO(this->get_logger(), "Request received");
 
     // zones to cover frontal 180 of the robot
     // covering front of robot
@@ -114,25 +116,25 @@ private:
       total_distance_by_zone[zone_name] = total_ray_zone;
     }
 
-    // display laser info for debugging purpose
-    for (const auto &[zone_value, dist] : total_distance_by_zone) {
-      RCLCPP_INFO(this->get_logger(), "sensor laser zone: %s, dist: %.2fm",
-                  zone_value.c_str(), dist);
-    }
+    // display laser info for debugging purpose-------->
+    // for (const auto &[zone_value, dist] : total_distance_by_zone) {
+    //  RCLCPP_INFO(this->get_logger(), "sensor laser zone: %s, dist: %.2fm",
+    //              zone_value.c_str(), dist);
+    //}
 
     // check if obstacle ahead, and decide to what side turns
     if (min_distance["front"] > safety_distance) {
-      RCLCPP_INFO(this->get_logger(), "Forward");
+      RCLCPP_INFO(this->get_logger(), "Request Completed");
       response->direction = "Forward";
     } else {
 
-      RCLCPP_WARN(this->get_logger(), "Obstacle detect...");
-      // check which side is optimum
+      // RCLCPP_WARN(this->get_logger(), "Obstacle detect...");
+      //  check which side is optimum
       if (total_distance_by_zone["left"] > total_distance_by_zone["right"]) {
-        RCLCPP_INFO(this->get_logger(), "Left <---");
+        RCLCPP_INFO(this->get_logger(), "Request Completed");
         response->direction = "Left";
       } else {
-        RCLCPP_INFO(this->get_logger(), "RIGHT --->");
+        RCLCPP_INFO(this->get_logger(), "Request Completed");
         response->direction = "Right";
       }
     }
