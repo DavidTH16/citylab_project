@@ -47,7 +47,7 @@ public:
         client_name, rmw_qos_profile_services_default, client_cb_group_);
 
     subscriber_laser = this->create_subscription<sensor_msgs::msg::LaserScan>(
-        "/fastbot_1/scan", 10,
+        "/scan", 10,
         std::bind(&TestClient::laser_callback, this, std::placeholders::_1));
 
     timer_pointer = this->create_wall_timer(

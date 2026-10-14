@@ -117,11 +117,11 @@ private:
       cmd.angular.z = 0.0;
       publisher_cmd->publish(cmd);
     } else if (direction_string == "Left") {
-      cmd.linear.x = 0.1;
+      cmd.linear.x = 0.075; // 0.1
       cmd.angular.z = 0.5;
       publisher_cmd->publish(cmd);
     } else if (direction_string == "Right") {
-      cmd.linear.x = 0.1;
+      cmd.linear.x = 0.075; // 0.1
       cmd.angular.z = -0.5;
       publisher_cmd->publish(cmd);
     } else {
