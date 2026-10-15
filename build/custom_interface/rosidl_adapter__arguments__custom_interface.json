@@ -1,6 +1,0 @@
-{
-  "package_name": "custom_interface",
-  "non_idl_tuples": [
-    "/home/user/ros2_ws/src/citylab_project/custom_interface:srv/GetDirection.srv"
-  ]
-}
