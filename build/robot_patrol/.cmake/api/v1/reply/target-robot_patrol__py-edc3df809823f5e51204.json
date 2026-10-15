@@ -1,0 +1,79 @@
+{
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_custom_target"
+		],
+		"files" : 
+		[
+			"/home/user/ros2_ws/src/citylab_project/build/robot_patrol/robot_patrol__py/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 34,
+				"parent" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "robot_patrol::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "robot_patrol__py::@fe806e4176de440a7343",
+	"name" : "robot_patrol__py",
+	"paths" : 
+	{
+		"build" : "robot_patrol__py",
+		"source" : "/home/user/ros2_ws/src/citylab_project/build/robot_patrol/robot_patrol__py"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"isGenerated" : true,
+			"path" : "/home/user/ros2_ws/src/citylab_project/build/robot_patrol/robot_patrol__py/CMakeFiles/robot_patrol__py",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/user/ros2_ws/src/citylab_project/build/robot_patrol/robot_patrol__py/CMakeFiles/robot_patrol__py.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "/home/user/ros2_ws/src/citylab_project/build/robot_patrol/rosidl_generator_py/robot_patrol/_robot_patrol_s.ep.rosidl_typesupport_fastrtps_c.c.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

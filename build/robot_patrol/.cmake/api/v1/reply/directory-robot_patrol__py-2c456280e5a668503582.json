@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "robot_patrol__py",
+		"source" : "/home/user/ros2_ws/src/citylab_project/build/robot_patrol/robot_patrol__py"
+	}
+}

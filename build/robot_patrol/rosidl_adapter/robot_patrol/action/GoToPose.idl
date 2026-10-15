@@ -1,0 +1,25 @@
+// generated from rosidl_adapter/resource/action.idl.em
+// with input from robot_patrol/action/GoToPose.action
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/Pose2D.idl"
+
+module robot_patrol {
+  module action {
+    @verbatim (language="comment", text=
+      "Goal")
+    struct GoToPose_Goal {
+      geometry_msgs::msg::Pose2D goal_pos;
+    };
+    @verbatim (language="comment", text=
+      "Result")
+    struct GoToPose_Result {
+      boolean status;
+    };
+    @verbatim (language="comment", text=
+      "Feedback")
+    struct GoToPose_Feedback {
+      geometry_msgs::msg::Pose2D current_pos;
+    };
+  };
+};
