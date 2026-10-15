@@ -14,6 +14,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
 	"srv/GetDirection.srv"
+	"action/GoToPose.action"
 	DEPENDENCIES rclcpp sensor_msgs std_msgs
 )
 

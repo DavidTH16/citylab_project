@@ -15,6 +15,13 @@ find_package(std_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(custom_interface REQUIRED)
+find_package(rclcpp_action REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+	"action/GoToPose.action"
+	DEPENDENCIES rclcpp sensor_msgs std_msgs
+)
 
 #add executable 
 add_executable(patrol_executable src/patrol)
@@ -53,13 +60,30 @@ ament_target_dependencies(patrol_with_service_node
 	custom_interface
 )
 
+add_executable(go_to_pose_action_node src/go_to_pose_action)
+ament_target_dependencies(go_to_pose_action_node
+	rclcpp
+	std_msgs
+	geometry_msgs
+	rclcpp_action
+	nav_msgs
+	tf2
+	tf2_geometry_msgs
+)
+
 #install executable
 install(TARGETS
 	patrol_executable
 	patrol_with_service_node
+	go_to_pose_action_node
 	direction_service_node
 	test_client_node
 DESTINATION lib/${PROJECT_NAME})
+
+# add if interface is in the same package
+rosidl_target_interfaces(go_to_pose_action_node
+ ${PROJECT_NAME} "rosidl_typesupport_cpp")
+
 
 #install launch file
 install(DIRECTORY
