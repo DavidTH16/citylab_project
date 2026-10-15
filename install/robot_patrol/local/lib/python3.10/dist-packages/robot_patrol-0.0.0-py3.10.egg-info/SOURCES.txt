@@ -1,8 +1,0 @@
-setup.py
-robot_patrol/__init__.py
-robot_patrol.egg-info/PKG-INFO
-robot_patrol.egg-info/SOURCES.txt
-robot_patrol.egg-info/dependency_links.txt
-robot_patrol.egg-info/top_level.txt
-robot_patrol/action/__init__.py
-robot_patrol/action/_go_to_pose.py
