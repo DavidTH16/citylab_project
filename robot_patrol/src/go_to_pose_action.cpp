@@ -106,7 +106,7 @@ private:
   // callback to execute the current goal, send feedback
   //---------------------------------------------------------------------------------------
   void execute(const std::shared_ptr<GoalHandleToPose> goal_handle) {
-    RCLCPP_INFO(this->get_logger(), "Executing goal ...");
+    RCLCPP_INFO(this->get_logger(), "Goal Received");
     goal_execution = true;
     position_reached = false;
 
@@ -143,7 +143,7 @@ private:
     if (rclcpp::ok()) {
       result->status = true;
       goal_handle->succeed(result);
-      RCLCPP_INFO(this->get_logger(), "Goal succeeded");
+      RCLCPP_INFO(this->get_logger(), "Goal Completed");
     }
   }
 
@@ -164,8 +164,8 @@ private:
     current_pos_.x = msg->pose.pose.position.x;
     current_pos_.y = msg->pose.pose.position.y;
 
-    RCLCPP_INFO(this->get_logger(), "X: %.2f, Y:%.2F, THETA:%.2f",
-                current_pos_.x, current_pos_.y, current_yaw_);
+    // RCLCPP_INFO(this->get_logger(), "X: %.2f, Y:%.2F, THETA:%.2f",
+    //             current_pos_.x, current_pos_.y, current_yaw_);
 
     // extract yaw from quaternion
     tf2::Quaternion q(
@@ -179,14 +179,14 @@ private:
 
     if (!position_reached) { // goal_execution
       double distance_to_goal = calculate_distance(desired_pos_, current_pos_);
-      RCLCPP_INFO(this->get_logger(), "Distance to the target: %.3f",
-                  distance_to_goal);
+      // RCLCPP_INFO(this->get_logger(), "Distance to the target: %.3f",
+      //             distance_to_goal);
 
       // check if position is less than position tolerance
       if (distance_to_goal < 0.075) {
         stop_patrol();
         position_reached = true; // goal_execution
-        RCLCPP_INFO(this->get_logger(), "Robot has reached position ...");
+        // RCLCPP_INFO(this->get_logger(), "Robot has reached position ...");
       }
     } else { // rotate to final heading
       double final_yaw_error = desired_pos_.theta - current_yaw_;
@@ -232,8 +232,8 @@ private:
       if (std::abs(yaw_error) > 0.17) {
         velocity.linear.x = 0.0;
         velocity.angular.z = (yaw_error > 0) ? 0.5 : -0.5;
-        RCLCPP_INFO(this->get_logger(),
-                    "Turning towards target. Yaw error: %.2f", yaw_error);
+        // RCLCPP_INFO(this->get_logger(),
+        //             "Turning towards target. Yaw error: %.2f", yaw_error);
       } else {
         velocity.linear.x = 0.2;
         velocity.angular.z = 0.0;
