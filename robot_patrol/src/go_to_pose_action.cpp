@@ -67,7 +67,7 @@ public:
         this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
 
     timer_velocity_ = this->create_wall_timer(
-        100ms, std::bind(&GoToPose::timer_callback, this));
+        10ms, std::bind(&GoToPose::timer_callback, this));
 
     RCLCPP_INFO(this->get_logger(), "Action Server Ready ...");
   }
@@ -226,7 +226,7 @@ private:
     // Normalize yaw error to [-pi, pi]
     yaw_error = std::atan2(std::sin(yaw_error), std::cos(yaw_error));
 
-    // check goal, verify yaw and publish velocity
+    // check goal, verify yaw and set velocity
     if (goal_execution) {
       // verify yaw desire with minimu error
       if (std::abs(yaw_error) > 0.17) {
@@ -235,7 +235,7 @@ private:
         // RCLCPP_INFO(this->get_logger(),
         //             "Turning towards target. Yaw error: %.2f", yaw_error);
       } else {
-        velocity.linear.x = 0.2;
+        velocity.linear.x = 0.1; // 0.1
         velocity.angular.z = 0.0;
       }
     }
